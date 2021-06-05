@@ -183,14 +183,14 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     const removed = removedRoles.map(r => r).join(", "); // Removed Roles
     const embed = new Discord.MessageEmbed()
     if(oldMember.roles.cache.size < newMember.roles.cache.size) {
-    embed.setAuthor(oldmember.user.avatarURL())
+    //embed.setAuthor(oldmember.user.avatarURL())
     embed.setDescription(`${oldMember} Has goten a role`)
     embed.addField("Role", added, true)
     embed.setColor('RANDOM')
     return logs.send(embed)
     }
     if(oldMember.roles.cache.size > newMember.roles.cache.size) {
-    embed.setAuthor(oldmember.user.avatarURL())
+    //embed.setAuthor(oldmember.user.avatarURL())
     embed.setDescription(`${oldMember} Has goten a role`)
     embed.addField("Role", removed, true)
     embed.setColor('RANDOM')
