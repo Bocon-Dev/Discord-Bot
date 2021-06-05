@@ -106,8 +106,7 @@ client.on("guildMemberRemove", function(member){
 
 client.on("guildMemberUpdate", function(oldMember, newMember){
     if(oldMember.displayName != newMember.displayName) {
-        let displayName = newMember.displayName.toLowerCase();
-        if (displayName.match(/^[a-z0-9]/i) == null) {
+        if (newMember.displayName.match(/^[a-z0-9]/i) == null) {
             return logs.send('HOISTER ALERT Someones Name is Being Hoisted');
         }
         const newNick = new Discord.MessageEmbed()
