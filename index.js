@@ -105,6 +105,14 @@ client.on("guildMemberRemove", function(member){
 });
 
 client.on("guildMemberUpdate", function(oldMember, newMember){
+    if(oldMember.displayName != newMember.displayName) {
+        const newNick = new Discord.MessageEmbed()
+        .setTitle('A user has a new Nickname.')
+        .setDescription(`${oldMember} Has changed their NickName`)
+        .addField("Old Nickname", oldMember.displayName, true)
+        .addField("New Nickname", newMember.displayName, true)
+        return message.channel.send(newNick)
+    }
     const newRole = newMember.roles.cache
     .filter(r => !oldMember.roles.cache.has(r.id))
     .first()
