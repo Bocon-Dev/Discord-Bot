@@ -182,20 +182,15 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     const added = addedRoles.map(r => r).join(", "); // Added Roles
     const removed = removedRoles.map(r => r).join(", "); // Removed Roles
     const embed = new Discord.MessageEmbed()
-    if(oldMember.roles.cache.size < newMember.roles.cache.size) {
-    //embed.setAuthor(oldmember.user.avatarURL())
-    embed.setDescription(`${oldMember} Has goten a role`)
-    embed.addField("Role", added, true)
-    embed.setColor('RANDOM')
-    return logs.send(embed)
-    
-    } else if(oldMember.roles.cache.size > newMember.roles.cache.size) {
-    //embed.setAuthor(oldmember.user.avatarURL())
-    embed.setDescription(`${oldMember} Has goten a role`)
-    embed.addField("Role", removed, true)
-    embed.setColor('RANDOM')
-    return logs.send(embed)
-    } else if(oldMember.displayName != newMember.displayName) {
+    if (oldMember.roles.cache.size < newMember.roles.cache.size) {
+        embed.setDescription(`**${oldMember.user.tag}** has been given ${addedRoles.length > 1 ? 'some roles' : 'a role'}`)
+            .addField('Added', `${added}`)
+    }
+    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+        embed.setDescription(`**${oldMember.user.tag}** has been removed from ${removedRoles.length > 1 ? 'some roles' : 'a role'}`)
+            .addField('Removed', `${removed}`)
+    }
+    if(oldMember.displayName != newMember.displayName) {
         if(newMember.displayName.includes('darkisdumb'))
         return newMember.setNickname('why are you so mean :C')
         const newNick = new Discord.MessageEmbed()
