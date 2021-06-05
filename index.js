@@ -177,32 +177,9 @@ client.on("roleUpdate", function(oldRole, newRole){
 
 
 client.on("guildMemberUpdate", (oldMember, newMember) => {
-    // Old roles Collection is higher in size than the new one. A role has been removed.
-    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
-        // Creating an embed message.
-        const Embed = new discord.MessageEmbed();
-        Embed.setColor("RED");
-        Embed.setAuthor('Dark');
-        
-        // Looping through the role and checking which role was removed.
-        oldMember.roles.cache.forEach(role => {
-            if (!newMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Removed", role);
-            }
-        });
-
-        client.channels.cache.get("847600322439806977").send(Embed);
-    } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-        const Embed = new discord.MessageEmbed();
-        Embed.setColor("GREEN");
-        Embed.setAuthor('Dark');
-        
-        // Looping through the role and checking which role was added.
-        newMember.roles.cache.forEach(role => {
-            if (!oldMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Added", role);
-            }
-        });
-        client.channels.cache.get("847600322439806977").send(Embed);
-    }
-});
+    const addedRoles = newMember.roles.cache.filter(r => !oldMember.roles.cache.has(r.id));
+    const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
+    const added = addedRoles.map(r => r).join(", "); // Added Roles
+    const removed = removedRoles.map(r => r).join(", "); // Removed Roles
+    logs.send(added)
+})
