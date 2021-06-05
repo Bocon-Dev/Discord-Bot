@@ -103,7 +103,7 @@ client.on("guildMemberRemove", function(member){
     const embed = new Discord.MessageEmbed()
     logs.send(`a member leaves a guild, or is kicked: ${member.tag}`);
 });
-
+/*
 client.on("guildMemberUpdate", function(oldMember, newMember){
     if(oldMember.displayName != newMember.displayName) {
         if(newMember.displayName.includes('darkisdumb'))
@@ -128,7 +128,7 @@ client.on("guildMemberUpdate", function(oldMember, newMember){
     .setColor('RANDOM')
     logs.send(embed);
 });
-
+*/
 client.on("messageDelete", function(message){
     if(message.author.bot) return
     const logd = new Discord.MessageEmbed()
@@ -181,5 +181,5 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
     const added = addedRoles.map(r => r).join(", "); // Added Roles
     const removed = removedRoles.map(r => r).join(", "); // Removed Roles
-    logs.send(`\`${removed}\``)
+    logs.send(removed)
 })
