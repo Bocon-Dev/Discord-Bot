@@ -1,0 +1,10 @@
+node_modules/
+.node_repl_history
+.npm
+.env
+json.sqlite
+.pm2
+.config/configstore
+.cache
+.gitconfig
+.git

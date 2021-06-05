@@ -1,0 +1,36 @@
+module.exports = {
+    type: 'ready',
+    async run(client) {
+        console.log(`ready.js has been loaded`);
+        let statuses = [
+            `Users Talk`,
+            `People get Banned`,
+            `Bocon Host grow`,
+            `He wasn\'t seen again`,
+	        `Discord\'s API`,
+            `My Prefix Is $`
+	]
+
+        setInterval(() => {
+            var oss = require('os-utils');
+    const ms = require('ms')
+    const os = require('os')
+    const channel = client.channels.cache.get('850524440738398300')
+    function formatBytes(bytes) {
+                    if (bytes === 0) return '0 Bytes';
+                    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+                    return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`;
+                }
+    oss.cpuUsage(function(v){
+    channel.setTopic(`MEM USAGE: ${formatBytes(process.memoryUsage().heapUsed)}\nCPU Usage: ${v.toFixed(2)}%\nUPTIME: ${ms(os.uptime() * 1000, { long: true })}\nPING: ${client.ws.ping}\nDan Is hot`)
+    });
+        }, 30000)
+        setInterval(() => {
+            let status = statuses[Math.floor(Math.random() * statuses.length)]
+            client.user.setActivity(status, {
+                type: `WATCHING`,
+            });
+        }, 15000)
+    },
+};
