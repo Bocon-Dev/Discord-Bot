@@ -47,15 +47,13 @@ event_handler.performEvents(client);
 client.login(process.env.token)
 const logs = new Discord.WebhookClient(config.logsID, config.logsToken)
 client.on("channelCreate", function(channel){
+    const embed = new Discord.MessageEmbed()
     logs.send(`channelCreate: ${channel}`);
 });
 
 client.on("channelDelete", function(channel){
+    const embed = new Discord.MessageEmbed()
     logs.send(`channelDelete: ${channel}`);
-});
-
-client.on("channelPinsUpdate", function(channel, time){
-    logs.send(`channelPinsUpdate: ${channel}`);
 });
 
 client.on("channelUpdate", function(oldChannel, newChannel){
@@ -72,38 +70,50 @@ client.on("channelUpdate", function(oldChannel, newChannel){
 });
 
 client.on("emojiCreate", function(emoji){
+    const embed = new Discord.MessageEmbed()
     logs.send(`a custom emoji is created in a guild ${emoji}`);
 });
 
 client.on("emojiDelete", function(emoji){
+    const embed = new Discord.MessageEmbed()
     logs.send(`a custom guild emoji is deleted ${emoji}`);
 });
 
 client.on("emojiUpdate", function(oldEmoji, newEmoji){
-    logs.send(`a custom guild emoji is updated ${oldEmoji} ${newEmoji}`);
+    const embed = new Discord.MessageEmbed()
+    logs.send(`a custom guild emoji is updated ${oldEmoji.name} ${newEmoji.name}`);
 });
 
 client.on("guildBanAdd", function(guild, user){
+    const embed = new Discord.MessageEmbed()
     logs.send(`a member is banned from a guild`);
 });
 
 client.on("guildBanRemove", function(guild, user){
+    const embed = new Discord.MessageEmbed()
     logs.send(`a member is unbanned from a guild`);
 });
 
 client.on("guildMemberAdd", function(member){
+    const embed = new Discord.MessageEmbed()
     logs.send(`a user joins a guild: ${member.tag}`);
 });
 
 client.on("guildMemberRemove", function(member){
+    const embed = new Discord.MessageEmbed()
     logs.send(`a member leaves a guild, or is kicked: ${member.tag}`);
 });
 
 client.on("guildMemberUpdate", function(oldMember, newMember){
+    const newRole = newMember.roles.cache
+    .filter(r => !oldMember.roles.cache.has(r.id))
+    .first()
     const embed = new Discord.MessageEmbed()
-    .setDescription(`${oldMember} Has Changed Their NickName.`)
+    .setDescription(`A Member has been updated`)
     .addField("Old Nickname", oldMember.displayName, true)
     .addField("New Nickname", newMember.displayName, true)
+    .addField("\u200B", "\u200B", true)
+    .addField("New Role", newrole.name, true)
     .setColor('RANDOM')
     logs.send(embed);
 });
@@ -143,13 +153,11 @@ client.on("roleCreate", function(role){
 
 
 client.on("roleDelete", function(role){
+    const embed = new Discord.MessageEmbed()
     logs.send(`A role has been deleted ${role}`);
 });
 
 client.on("roleUpdate", function(oldRole, newRole){
+    const embed = new Discord.MessageEmbed()
     logs.send(`A role has been updated`);
-});
-
-client.on("userUpdate", function(oldUser, newUser){
-    logs.send("embed");
 });
