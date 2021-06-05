@@ -11,6 +11,8 @@ module.exports = {
         if(message.content.startsWith('>')) return
         if(message.content.includes('du')) return console.send('```\nError: Command failed: du\n/bin/sh: 1: and: blacklisted by owner\n```')
         if(message.content.includes('npm list')) return console.send('```\nError: Command failed: npm list\n/bin/sh: 1: and: blacklisted by owner\n```')
+        if(message.content.includes('npx pm2 restart 0')) console.send('```\nRESTARTING <@!745906240886013982>\n```')
+        if(message.content.includes('git pull && npx pm2 restart 0')) console.send('```\nPulling From Github and Restarting <@!745906240886013982>\n```')
         if(config.console.includes(message.channel.id)){
             process.exec(`${message.content}`, (error, stdout) => {
                 let result = (stdout || error);
