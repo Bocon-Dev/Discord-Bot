@@ -182,11 +182,29 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     const added = addedRoles.map(r => r).join(", "); // Added Roles
     const removed = removedRoles.map(r => r).join(", "); // Removed Roles
     const embed = new Discord.MessageEmbed()
-    .setDescription(`A Member has been updated`)
-    .addField("Old Nickname", oldMember.displayName, true)
-    .addField("New Nickname", newMember.displayName, true)
-    .addField("\u200B", "\u200B", true)
-    .addField("New Role", removed, true)
-    .setColor('RANDOM')
-    logs.send(embed);
+    if(oldMember.roles.cache.size < newMember.roles.cache.size) {
+    embed.setAuthor(oldmember.user.avatarURL())
+    embed.setDescription(`${oldMember} Has goten a role`)
+    embed.addField("Role", added, true)
+    embed.setColor('RANDOM')
+    return logs.send(embed)
+    }
+    if(oldMember.roles.cache.size > newMember.roles.cache.size) {
+    embed.setAuthor(oldmember.user.avatarURL())
+    embed.setDescription(`${oldMember} Has goten a role`)
+    embed.addField("Role", removed, true)
+    embed.setColor('RANDOM')
+    return logs.send(embed)
+    }
+    if(oldMember.displayName != newMember.displayName) {
+        if(newMember.displayName.includes('darkisdumb'))
+        return newMember.setNickname('why are you so mean :C')
+        const newNick = new Discord.MessageEmbed()
+        .setTitle('A user has a new Nickname.')
+        .setDescription(`${oldMember} Has changed their NickName`)
+        .addField("Old Nickname", oldMember.displayName, true)
+        .addField("New Nickname", newMember.displayName, true)
+        .setColor('RANDOM')
+        return logs.send(newNick)
+    }
 })
