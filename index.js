@@ -179,17 +179,19 @@ client.on("roleUpdate", function(oldRole, newRole){
 client.on("guildMemberUpdate", (oldMember, newMember) => {
     const addedRoles = newMember.roles.cache.filter(r => !oldMember.roles.cache.has(r.id));
     const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
-    const added = addedRoles.map(r => r).join(", "); // Added Roles
-    const removed = removedRoles.map(r => r).join(", "); // Removed Roles
+    const added = addedRoles.map(r => r).join(", "); 
+    const removed = removedRoles.map(r => r).join(", "); 
     const embed = new Discord.MessageEmbed()
     if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-        embed.setDescription(`**${oldMember.user.tag}** has been given ${addedRoles.length > 1 ? 'some roles' : 'a role'}`)
+        embed.setDescription(`${oldMember} Has goten a Role('s) Added`)
             .addField('Added', `${added}`)
+            .setColor('RANDOM')
             return logs.send(embed)
     }
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
-        embed.setDescription(`**${oldMember.user.tag}** has been removed from ${removedRoles.length > 1 ? 'some roles' : 'a role'}`)
+        embed.setDescription(`${oldMember} Has goten a Role('s) Removed`)
             .addField('Removed', `${removed}`)
+            .setColor('RANDOM')
             return logs.send(embed)
     }
     if(oldMember.displayName != newMember.displayName) {
