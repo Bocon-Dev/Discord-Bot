@@ -181,5 +181,12 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
     const added = addedRoles.map(r => r).join(", "); // Added Roles
     const removed = removedRoles.map(r => r).join(", "); // Removed Roles
-    logs.send(removedRoles.name)
+    const embed = new Discord.MessageEmbed()
+    .setDescription(`A Member has been updated`)
+    .addField("Old Nickname", oldMember.displayName, true)
+    .addField("New Nickname", newMember.displayName, true)
+    .addField("\u200B", "\u200B", true)
+    .addField("New Role", removed, true)
+    .setColor('RANDOM')
+    logs.send(embed);
 })
