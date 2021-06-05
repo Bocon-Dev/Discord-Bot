@@ -113,7 +113,7 @@ client.on("guildMemberUpdate", function(oldMember, newMember){
     .addField("Old Nickname", oldMember.displayName, true)
     .addField("New Nickname", newMember.displayName, true)
     .addField("\u200B", "\u200B", true)
-    .addField("New Role", newrole.name, true)
+    .addField("New Role", newRole.name, true)
     .setColor('RANDOM')
     logs.send(embed);
 });
