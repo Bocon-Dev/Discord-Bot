@@ -185,10 +185,12 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         embed.setDescription(`**${oldMember.user.tag}** has been given ${addedRoles.length > 1 ? 'some roles' : 'a role'}`)
             .addField('Added', `${added}`)
+            return logs.send(embed)
     }
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         embed.setDescription(`**${oldMember.user.tag}** has been removed from ${removedRoles.length > 1 ? 'some roles' : 'a role'}`)
             .addField('Removed', `${removed}`)
+            return logs.send(embed)
     }
     if(oldMember.displayName != newMember.displayName) {
         if(newMember.displayName.includes('darkisdumb'))
