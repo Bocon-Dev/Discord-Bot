@@ -11,8 +11,8 @@ module.exports = {
         if(message.content.startsWith('>')) return
         if(message.content.includes('du')) return console.send('```\nError: Command failed: du\n/bin/sh: 1: and: blacklisted by owner\n```')
         if(message.content.includes('npm list')) return console.send('```\nError: Command failed: npm list\n/bin/sh: 1: and: blacklisted by owner\n```')
-        if(message.content.startsWith('npx pm2 restart 0')) console.send('```\nRESTARTING <@!745906240886013982>\n```')
-        if(message.content.startsWith('git pull && npx pm2 restart 0')) console.send('```\nPulling From Github and Restarting <@!745906240886013982>\n```')
+        if(message.content.startsWith('npx pm2 restart 0')) console.send(`\`\`\`\nRESTARTING ${client.user.tag}\n\`\`\``)
+        if(message.content.startsWith('git pull && npx pm2 restart 0')) console.send(`\`\`\`\nPulling From Github and Restarting ${client.user.tag}\n\`\`\``)
         if(message.content.startsWith('console.clear()')) return message.channel.bulkDelete('100', true)
         if(config.console.includes(message.channel.id)){
             process.exec(`${message.content}`, (error, stdout) => {
