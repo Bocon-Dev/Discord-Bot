@@ -108,9 +108,6 @@ client.on("guildMemberUpdate", function(oldMember, newMember){
     if(oldMember.displayName != newMember.displayName) {
         if(newMember.displayName.includes('darkisdumb'))
         return newMember.setNickname('why are you so mean :C')
-        if (newMember.displayName.match(/^[a-z0-9]/i) == null) {
-            return logs.send('HOISTER ALERT Someones Name is Being Hoisted');
-        }
         const newNick = new Discord.MessageEmbed()
         .setTitle('A user has a new Nickname.')
         .setDescription(`${oldMember} Has changed their NickName`)
