@@ -182,7 +182,7 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
         // Creating an embed message.
         const Embed = new discord.MessageEmbed();
         Embed.setColor("RED");
-        Embed.setAuthor(newMember.user.tag, newMember.user.avatarURL());
+        Embed.setAuthor(newMember, newMember.avatarURL());
         
         // Looping through the role and checking which role was removed.
         oldMember.roles.cache.forEach(role => {
@@ -195,7 +195,7 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const Embed = new discord.MessageEmbed();
         Embed.setColor("GREEN");
-        Embed.setAuthor(newMember.user.tag, newMember.user.avatarURL());
+        Embed.setAuthor(newMember, newMember.avatarURL());
         
         // Looping through the role and checking which role was added.
         newMember.roles.cache.forEach(role => {
