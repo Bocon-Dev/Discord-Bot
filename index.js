@@ -111,7 +111,7 @@ client.on("guildMemberUpdate", function(oldMember, newMember){
         .setDescription(`${oldMember} Has changed their NickName`)
         .addField("Old Nickname", oldMember.displayName, true)
         .addField("New Nickname", newMember.displayName, true)
-        return message.channel.send(newNick)
+        return logs.send(newNick)
     }
     const newRole = newMember.roles.cache
     .filter(r => !oldMember.roles.cache.has(r.id))
