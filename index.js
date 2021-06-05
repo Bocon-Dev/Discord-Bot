@@ -181,5 +181,5 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
     const added = addedRoles.map(r => r).join(", "); // Added Roles
     const removed = removedRoles.map(r => r).join(", "); // Removed Roles
-    logs.send(added)
+    logs.send(`${removed.name}`)
 })
