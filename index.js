@@ -69,7 +69,7 @@ client.on("channelUpdate", function(oldChannel, newChannel){
         .addField('New channels topic', newtopic, true)
         .setColor('RANDOM') 
         return logs.send(topicchange);
-    }
+    }  
     if(oldChannel.name != newChannel.name){
         const newname = new Discord.MessageEmbed()
         .setTitle('A Channels Name has been changed')
