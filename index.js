@@ -2,9 +2,9 @@ global.Discord = require("discord.js");
 global.discord = require('discord.js');
 const Util = require("discord.js")
 const config = require('./config/config.json')
-//'users',
+//
 const client = new Discord.Client({
-    allowedMentions: { parse: ['roles'], repliedUser: true },
+    allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"]
 })
 const event_handler = require('./event');
