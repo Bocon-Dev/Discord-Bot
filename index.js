@@ -61,12 +61,12 @@ client.on("channelUpdate", function(oldChannel, newChannel){
     if(oldChannel.topic != newChannel.topic){
         const oldtopic = oldChannel.topic;
         const newtopic = newChannel.topic;
-        if(newtopic == null) return logs.send('The Newtopic is null')
-        if(oldtopic == null) return logs.send('The Old topic is was null')
+       // if(newtopic == null) return logs.send('The Newtopic is null')
+        //if(oldtopic == null) return logs.send('The Old topic is was null')
         const topicchange = new Discord.MessageEmbed()
         .setTitle('A Channels topic has been changed')
-        .addField('Old Channels topic', oldtopic, true)
-        .addField('New channels topic', newtopic, true)
+        .addField('Old Channels topic', `${oldtopic || 'null'}`, true)
+        .addField('New channels topic', `${newtopic || 'null'}`, true)
         .setColor('RANDOM') 
         return logs.send(topicchange);
     }  
