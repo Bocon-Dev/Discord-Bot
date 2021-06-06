@@ -67,7 +67,7 @@ client.on("channelUpdate", function(oldChannel, newChannel){
         .setTitle('A Channels topic has been changed')
         .addField('Old Channels topic', oldtopic, true)
         .addField('New channels topic', newtopic, true)
-        .setColor('RANDOM')
+        .setColor('RANDOM') 
         return logs.send(topicchange);
     }
     if(oldChannel.name != newChannel.name){
