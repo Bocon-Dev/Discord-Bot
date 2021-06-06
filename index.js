@@ -58,14 +58,25 @@ client.on("channelDelete", function(channel){
 
 client.on("channelUpdate", function(oldChannel, newChannel){
     if(oldChannel.id == '850524440738398300') return
-    const embed = new Discord.MessageEmbed()
-    .setTitle('A channel has been Updated')
+    if(oldChannel.topic != newChannel.topic){
+        const topicchange = new Discord.MessageEmbed()
+        .setTitle('A Channels topic has been changed')
+        .addField('Old Channels topic', oldChannel.topic, true)
+        .addField('New channels topic', newChannel.topic, true)
+        .setColor('RANDOM')
+        return logs.send(topicchange);
+    }
+    if(oldChannel.name != newChannel.name){
+        const newname = new Discord.MessageEmbed()
+        .setTitle('A Channels Name has been changed')
     .addField("Old channel Name", oldChannel.name, true)
     .addField("New Channel Name", newChannel.name, true)
-    .addField("\u200B", "\u200B", true)
-    .addField("Old channel topic", oldChannel.topic, true)
-    .addField("New Channel Topic", newChannel.topic, true)
     .setColor('RANDOM')
+    return logs.send(newname);
+    }
+    const embed = new Discord.MessageEmbed()
+    .setTitle('A channel has been Updated')
+    .setDescription('I don\'t know what changed....')
     logs.send(embed);
 });
 
