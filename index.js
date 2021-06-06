@@ -103,32 +103,6 @@ client.on("guildMemberRemove", function(member){
     const embed = new Discord.MessageEmbed()
     logs.send(`a member leaves a guild, or is kicked: ${member.tag}`);
 });
-/*
-client.on("guildMemberUpdate", function(oldMember, newMember){
-    if(oldMember.displayName != newMember.displayName) {
-        if(newMember.displayName.includes('darkisdumb'))
-        return newMember.setNickname('why are you so mean :C')
-        const newNick = new Discord.MessageEmbed()
-        .setTitle('A user has a new Nickname.')
-        .setDescription(`${oldMember} Has changed their NickName`)
-        .addField("Old Nickname", oldMember.displayName, true)
-        .addField("New Nickname", newMember.displayName, true)
-        .setColor('RANDOM')
-        return logs.send(newNick)
-    }
-    const newRole = newMember.roles.cache
-    .filter(r => !oldMember.roles.cache.has(r.id))
-    .first()
-    const embed = new Discord.MessageEmbed()
-    .setDescription(`A Member has been updated`)
-    .addField("Old Nickname", oldMember.displayName, true)
-    .addField("New Nickname", newMember.displayName, true)
-    .addField("\u200B", "\u200B", true)
-    .addField("New Role", newRole.name, true)
-    .setColor('RANDOM')
-    logs.send(embed);
-});
-*/
 client.on("messageDelete", function(message){
     if(message.author.bot) return
     const logd = new Discord.MessageEmbed()
