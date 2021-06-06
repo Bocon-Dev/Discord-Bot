@@ -111,12 +111,12 @@ client.on("guildBanRemove", function(guild, user){
 
 client.on("guildMemberAdd", function(member){
     const embed = new Discord.MessageEmbed()
-    logs.send(`a user joins a guild: ${member.tag}`);
+    logs.send(`a user joins a guild: ${member}`);
 });
 
 client.on("guildMemberRemove", function(member){
     const embed = new Discord.MessageEmbed()
-    logs.send(`a member leaves a guild, or is kicked: ${member.tag}`);
+    logs.send(`a member leaves a guild, or is kicked: ${member}`);
 });
 client.on("messageDelete", function(message){
     if(message.author.bot) return
@@ -131,7 +131,7 @@ client.on("messageDelete", function(message){
 });
 
 client.on("messageDeleteBulk", function(messages){
-    logs.send(`a Bulk amount of messages have been deleted\n\n${messages}`);
+    logs.send(`a Bulk amount of messages have been deleted\n\n${messages.author.id}`);
 });
 
 client.on("messageUpdate", function(oldMessage, newMessage){
@@ -148,13 +148,13 @@ client.on("messageUpdate", function(oldMessage, newMessage){
 });
 
 client.on("roleCreate", function(role){
-    logs.send(`New role was Made ${role}`);
+    logs.send(`New role was Made ${role.name}`);
 });
 
 
 client.on("roleDelete", function(role){
     const embed = new Discord.MessageEmbed()
-    logs.send(`A role has been deleted ${role}`);
+    logs.send(`A role has been deleted ${role.name}`);
 });
 
 client.on("roleUpdate", function(oldRole, newRole){
