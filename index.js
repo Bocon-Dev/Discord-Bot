@@ -62,7 +62,7 @@ client.on("channelUpdate", function(oldChannel, newChannel){
         const oldtopic = oldChannel.topic;
         const newtopic = newChannel.topic;
         if(oldtopic == null) oldtopic = "null";
-        if(newtopic == null) newtopic = "null"
+        if(newtopic == null) newtopic = "null";
         const topicchange = new Discord.MessageEmbed()
         .setTitle('A Channels topic has been changed')
         .addField('Old Channels topic', oldtopic, true)
