@@ -59,10 +59,14 @@ client.on("channelDelete", function(channel){
 client.on("channelUpdate", function(oldChannel, newChannel){
     if(oldChannel.id == '850524440738398300') return
     if(oldChannel.topic != newChannel.topic){
+        const oldtopic = oldChannel.topic;
+        const newtopic = newChannel.topic;
+        if(oldtopic == null) oldtopic = "null";
+        if(newtopic == null) newtopic = "null"
         const topicchange = new Discord.MessageEmbed()
         .setTitle('A Channels topic has been changed')
-        .addField('Old Channels topic', oldChannel.topic, true)
-        .addField('New channels topic', newChannel.topic, true)
+        .addField('Old Channels topic', oldtopic, true)
+        .addField('New channels topic', newtopic, true)
         .setColor('RANDOM')
         return logs.send(topicchange);
     }
