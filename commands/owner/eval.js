@@ -29,7 +29,8 @@ const responses = ["SyntaxError: Unexpected token F in JSON at position 48", "Sy
             return message.channel.send(fakeembed)
 }
         try {
-            let evaled = eval(code);
+            let evaled = eval(code)
+            .replace(client.token, "*".repeat(client.token.length));
             if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
             const embed = new MessageEmbed()
             .setTitle('Eval')
