@@ -150,7 +150,7 @@ client.on("messageDeleteBulk", function(messages){
 		RecordMessage.delete(client, list[i]);
 	}
 
-	log(colors.red('messageDeleteBulk'), '#' + list[0].channel.name + ' / ' + list[0].author.tag + ' / #' + list.length)
+	logs.send('#' + list[0].channel.name + ' / ' + list[0].author.tag + ' / #' + list.length)
 });
 
 client.on("messageUpdate", function(oldMessage, newMessage){
