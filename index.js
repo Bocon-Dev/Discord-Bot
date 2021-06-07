@@ -130,20 +130,17 @@ client.on("messageDelete", function(message){
     logs.send(logd);
 });
 
-client.on("messageDelete", function(messages){
+client.on("messageDeleteBulk", function(messages){
     const length = messages.array().length;
     const channel = messages.first().channel.name;
   
     const embed = new Discord.MessageEmbed()
-      .setTitle(`${length} Messages purged in #${channel}`)
+      .setTitle(`${length} Messages cleared in #${channel}`)
       .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
       .setFooter(`${length} latest shown`)
-      .setColor('#dd5f53')
+      .setColor('RANDOM')
       .setTimestamp();
-  
-    // use this to send the message to the channel the bulk delete happened in 
-    logs.send(embed)
-    // alternatively, use this to send the message to a specific channel
+      logs.send(embed)
   });
   
 
