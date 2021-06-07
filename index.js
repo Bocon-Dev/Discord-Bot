@@ -142,7 +142,7 @@ client.on("messageDelete", function(messages){
       .setTimestamp();
   
     // use this to send the message to the channel the bulk delete happened in 
-    messages.first().channel.send(embed);
+    logs.send(embed)
     // alternatively, use this to send the message to a specific channel
   });
   
