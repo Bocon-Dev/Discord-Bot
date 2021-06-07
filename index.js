@@ -131,12 +131,12 @@ client.on("messageDelete", function(message){
 });
 
 client.on("messageDeleteBulk", function(messages){
-    const length = messages.array().length;
+    const length = messages.array().join().length;
     const channel = messages.first().channel.name;
   
     const embed = new Discord.MessageEmbed()
       .setTitle(`${length} Messages cleared in #${channel}`)
-      .setDescription(messages.map.join(message => `[${message.author.tag}]: ${message.content}`))
+      .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
       .setFooter(`${length} latest shown`)
       .setColor('RANDOM')
       .setTimestamp();
