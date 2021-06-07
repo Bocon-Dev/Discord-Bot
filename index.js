@@ -138,10 +138,12 @@ client.on('messageDeleteBulk', async messages => {
       .setTitle(`${length} Messages purged in #${channel}`)
       .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
       .setFooter(`${length} latest shown`)
-      .setColor('RNADOM')
-      .setTimestamp(); 
+      .setColor('#dd5f53')
+      .setTimestamp();
   
-    logs.send(embed)
+    // use this to send the message to the channel the bulk delete happened in 
+    messages.first().channel.send(embed);
+    // alternatively, use this to send the message to a specific channel
   });
   
 
