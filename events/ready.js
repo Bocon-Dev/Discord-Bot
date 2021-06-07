@@ -1,7 +1,7 @@
 
 const config = require('../config/config.json')
 const githubhook = new Discord.WebhookClient(config.gitpullhookid, config.gitpullhooktoken);
-const exec = require('child_process');
+const exec = require('child_process').exec;
 module.exports = {
     type: 'ready',
     async run(client) {
