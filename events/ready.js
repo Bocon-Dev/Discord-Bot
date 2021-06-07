@@ -15,7 +15,7 @@ module.exports = {
             `My Prefix Is $`
 	]
 
-// Credit goes to DanBot hosting's discord bot!
+// Credit goes to DanBot hosting's discord bot
 setInterval(() => {
     exec(`git pull`, (error, stdout) => {
         let response = (error || stdout);
