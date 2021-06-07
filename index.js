@@ -131,6 +131,7 @@ client.on("messageDelete", function(message){
 });
 client.on("messageDeleteBulk", function(messages){
     const output = messages.reduce((out, msg) => {
+        const attachment = msg.attachments.first();
 			out += `${msg.author.tag} (${msg.author.id}): ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
             fs.writeFile(`deleted.txt`, `${out}`, (err) => { 
                 console.log(err)
