@@ -142,7 +142,10 @@ client.on("messageDeleteBulk", function(messages){
       .setDescription(`${messages.size} messages bulk deleted in ${messages.first().channel}.`)
       .setColor('RANDOM')
       .setTimestamp();
-      logs.send({ embed, files: [{ attachment: Buffer.from(output, 'utf8'), name: 'logs.txt' }] });
+      logs.send({
+        embeds: [embed],
+        files: [{ attachment: Buffer.from(output, 'utf8'), name: 'logs.txt' }],
+      });
   });
 
 client.on("messageUpdate", function(oldMessage, newMessage){
