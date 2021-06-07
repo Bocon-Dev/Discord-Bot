@@ -129,29 +129,23 @@ client.on("messageDelete", function(message){
 		.setColor("RED")
     logs.send(logd);
 });
-/*
 client.on("messageDeleteBulk", function(messages){
-    const length = messages.array().join().length;
-    const channel = messages.first().channel.name;
+    //const length = messages.array().join().length;
+    //const channel = messages.first().channel.name;
   
     const embed = new Discord.MessageEmbed()
-      .setTitle(`${length} Messages cleared in #${channel}`)
-      .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
-      .setFooter(`${length} latest shown`)
+      //.setTitle(`${length} Messages cleared in #${channel}`)
+      .setDescription(
+        `${messages.size} messages bulk deleted in ${
+          messages.first().channel
+        }.`
+      )
+      //.setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
+      //.setFooter(`${length} latest shown`)
       .setColor('RANDOM')
       .setTimestamp();
       logs.send(embed)
   });
- */
-
-  client.on('messageDeleteBulk', (data) => {
-	var list = Array.from(data.values());
-	for (i in list) {
-		RecordMessage.delete(client, list[i]);
-	}
-
-	logs.send('#' + list[0].channel.name + ' / ' + list[0].author.tag + ' / #' + list.length)
-});
 
 client.on("messageUpdate", function(oldMessage, newMessage){
     if(oldMessage.author.bot) return
