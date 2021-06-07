@@ -130,9 +130,20 @@ client.on("messageDelete", function(message){
     logs.send(logd);
 });
 
-client.on("messageDeleteBulk", function(messages){
-    logs.send(`a Bulk amount of messages have been deleted\n\n${messages.author.id}`);
-});
+client.on('messageDeleteBulk', async messages => {
+    const length = messages.array().length;
+    const channel = messages.first().channel.name;
+  
+    const embed = new Discord.MessageEmbed()
+      .setTitle(`${length} Messages purged in #${channel}`)
+      .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
+      .setFooter(`${length} latest shown`)
+      .setColor('RNADOM')
+      .setTimestamp();
+  
+    logs.send(embed)
+  });
+  
 
 client.on("messageUpdate", function(oldMessage, newMessage){
     if(oldMessage.author.bot) return
