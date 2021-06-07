@@ -118,6 +118,7 @@ client.on("guildMemberRemove", function(member){
     const embed = new Discord.MessageEmbed()
     logs.send(`a member leaves a guild, or is kicked: ${member}`);
 });
+
 client.on("messageDelete", function(message){
     if(message.author.bot) return
     const logd = new Discord.MessageEmbed()
@@ -129,8 +130,8 @@ client.on("messageDelete", function(message){
 		.setColor("RED")
     logs.send(logd);
 });
+
 client.on("messageDeleteBulk", function(messages){
-    console.log(messages.content)
     const output = messages.reduce((out, msg) => {
         const attachment = msg.attachments.first();
 			out += `${msg.author.tag}: ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
