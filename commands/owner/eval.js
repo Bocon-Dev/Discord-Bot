@@ -30,9 +30,7 @@ const responses = ["SyntaxError: Unexpected token F in JSON at position 48", "Sy
 }
         try {
             let evaled = eval(code)
-            if(evaled.includes(client.token)){
-                evaled.replace("*".repeat(client.token.length));
-            }
+            if (evaled === client.token) client.token.replace(client.token, "*".repeat(client.token.length));
             if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
             const embed = new MessageEmbed()
             .setTitle('Eval')
