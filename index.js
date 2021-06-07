@@ -139,7 +139,7 @@ client.on('messageDeleteBulk', async messages => {
       .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
       .setFooter(`${length} latest shown`)
       .setColor('RNADOM')
-      .setTimestamp();
+      .setTimestamp(); 
   
     logs.send(embed)
   });
