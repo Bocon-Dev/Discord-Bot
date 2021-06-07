@@ -136,7 +136,7 @@ client.on("messageDeleteBulk", function(messages){
   
     const embed = new Discord.MessageEmbed()
       .setTitle(`${length} Messages cleared in #${channel}`)
-      .setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
+      .setDescription(messages.map.join(message => `[${message.author.tag}]: ${message.content}`))
       .setFooter(`${length} latest shown`)
       .setColor('RANDOM')
       .setTimestamp();
