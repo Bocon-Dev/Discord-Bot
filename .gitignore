@@ -8,3 +8,4 @@ json.sqlite
 .cache
 .gitconfig
 .git
+config.json
