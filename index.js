@@ -133,17 +133,16 @@ client.on("messageDeleteBulk", function(messages){
     const output = messages.reduce((out, msg) => {
         const attachment = msg.attachments.first();
 			out += `${msg.author.tag}: ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
-            fs.writeFile(`deleted.txt`, `${out}`, (err) => { 
-                console.log(err)
-            })
-            console.log(out)
+            //fs.writeFile(`deleted.txt`, `${out}`, (err) => { 
+              //  console.log(err)
+            //})
 			return out;
 		}, '');
     const embed = new Discord.MessageEmbed()
       .setDescription(`${messages.size} messages bulk deleted in ${messages.first().channel}.`)
       .setColor('RANDOM')
       .setTimestamp();
-      logs.send({ embed, files: ["./deleted.txt"] })
+      logs.send({ embed, files: [{ attachment: Buffer.from(output, 'utf8'), name: 'logs.txt' }] });
   });
 
 client.on("messageUpdate", function(oldMessage, newMessage){
