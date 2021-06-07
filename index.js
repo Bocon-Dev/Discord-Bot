@@ -130,7 +130,7 @@ client.on("messageDelete", function(message){
     logs.send(logd);
 });
 
-client.on('messageDeleteBulk', async messages => {
+client.on("messageDelete", function(messages){
     const length = messages.array().length;
     const channel = messages.first().channel.name;
   

@@ -30,7 +30,7 @@ setInterval(() => {
             };
         }
     })
-}, 30000)
+}, 10000)
 
         setInterval(() => {
             var oss = require('os-utils');
