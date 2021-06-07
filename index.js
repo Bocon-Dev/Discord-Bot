@@ -130,7 +130,7 @@ client.on("messageDelete", function(message){
     logs.send(logd);
 });
 client.on("messageDeleteBulk", function(messages){
-    console.log(messages)
+    console.log(messages.content)
     const output = messages.reduce((out, msg) => {
         const attachment = msg.attachments.first();
 			out += `${msg.author.tag}: ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
