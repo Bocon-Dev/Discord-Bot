@@ -132,7 +132,13 @@ client.on("messageDelete", function(message){
 client.on("messageDeleteBulk", function(messages){
     //const length = messages.array().join().length;
     //const channel = messages.first().channel.name;
-    console.log(messages.content)
+
+    const output = messages.reduce((out, msg) => {
+			const attachment = msg.attachments.first();
+			out += `[${moment.utc(msg.createdTimestamp).format('YYYY/MM/DD hh:mm:ss')}] ${msg.author.tag} (${msg.author.id}): ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
+			return out;
+		}, '');
+        //console.log(output)
     const embed = new Discord.MessageEmbed()
       //.setTitle(`${length} Messages cleared in #${channel}`)
       .setDescription(
