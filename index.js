@@ -130,6 +130,8 @@ client.on("messageDelete", function(message){
     logs.send(logd);
 });
 client.on("messageDeleteBulk", function(messages){
+    const moment = require('moment');
+require('moment-duration-format');
     //const length = messages.array().join().length;
     //const channel = messages.first().channel.name;
 
