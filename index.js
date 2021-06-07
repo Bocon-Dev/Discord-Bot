@@ -129,7 +129,7 @@ client.on("messageDelete", function(message){
 		.setColor("RED")
     logs.send(logd);
 });
-
+/*
 client.on("messageDeleteBulk", function(messages){
     const length = messages.array().join().length;
     const channel = messages.first().channel.name;
@@ -142,7 +142,16 @@ client.on("messageDeleteBulk", function(messages){
       .setTimestamp();
       logs.send(embed)
   });
-  
+ */
+
+  client.on('messageDeleteBulk', (data) => {
+	var list = Array.from(data.values());
+	for (i in list) {
+		RecordMessage.delete(client, list[i]);
+	}
+
+	log(colors.red('messageDeleteBulk'), '#' + list[0].channel.name + ' / ' + list[0].author.tag + ' / #' + list.length)
+});
 
 client.on("messageUpdate", function(oldMessage, newMessage){
     if(oldMessage.author.bot) return
