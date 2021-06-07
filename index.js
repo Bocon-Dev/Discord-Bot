@@ -130,14 +130,11 @@ client.on("messageDelete", function(message){
     logs.send(logd);
 });
 client.on("messageDeleteBulk", function(messages){
-    const moment = require('moment');
-require('moment-duration-format');
-    //const length = messages.array().join().length;
-    //const channel = messages.first().channel.name;
-
     const output = messages.reduce((out, msg) => {
-			const attachment = msg.attachments.first();
-			out += `[${moment.utc(msg.createdTimestamp).format('YYYY/MM/DD hh:mm:ss')}] ${msg.author.tag} (${msg.author.id}): ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
+			out += `${msg.author.tag} (${msg.author.id}): ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
+            fs.writeFile(`deleted.txt`, `${out}`, (err) => { 
+                console.log(err)
+            })
             console.log(out)
 			return out;
 		}, '');
