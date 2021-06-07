@@ -132,26 +132,18 @@ client.on("messageDelete", function(message){
 client.on("messageDeleteBulk", function(messages){
     const output = messages.reduce((out, msg) => {
         const attachment = msg.attachments.first();
-			out += `${msg.author.tag} (${msg.author.id}): ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
+			out += `${msg.author.tag}: ${msg.cleanContent ? msg.cleanContent.replace(/\n/g, '\r\n') : ''}${attachment ? `\r\n${attachment.url}` : ''}\r\n`;
             fs.writeFile(`deleted.txt`, `${out}`, (err) => { 
                 console.log(err)
             })
             console.log(out)
 			return out;
 		}, '');
-        //console.log(output)
     const embed = new Discord.MessageEmbed()
-      //.setTitle(`${length} Messages cleared in #${channel}`)
-      .setDescription(
-        `${messages.size} messages bulk deleted in ${
-          messages.first().channel
-        }.`
-      )
-      //.setDescription(messages.map(message => `[${message.author.tag}]: ${message.content}`))
-      //.setFooter(`${length} latest shown`)
+      .setDescription(`${messages.size} messages bulk deleted in ${messages.first().channel}.`)
       .setColor('RANDOM')
       .setTimestamp();
-      logs.send(embed)
+      logs.send({ embed, files: ["./deleted.txt"] })
   });
 
 client.on("messageUpdate", function(oldMessage, newMessage){
