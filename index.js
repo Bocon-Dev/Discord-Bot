@@ -136,6 +136,8 @@ client.on("messageDeleteBulk", function(messages){
 
 client.on("messageUpdate", function(oldMessage, newMessage){
     if(oldMessage.author.bot) return
+    if (oldContent === newMessage.content && newMessage.embeds.length<oldMessage.embeds.length) return
+            if (oldContent === newMessage.content && newMessage.embeds.length>oldMessage.embeds.length) return
     const log = new Discord.MessageEmbed()
         .setAuthor(`${oldMessage.author.tag}`, oldMessage.author.displayAvatarURL({ dynamic: true }))
         .setTitle(`Message Edited in #${oldMessage.channel.name}`)
