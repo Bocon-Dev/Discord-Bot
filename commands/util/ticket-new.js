@@ -7,7 +7,7 @@ module.exports = {
     description: "",
     usage: "",
     category: "Ticket",
-    aliases: [""],
+    aliases: ["ticket new"],
     run: async (client, message, args, config) => {
         let category = message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
     if (!category) return message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')

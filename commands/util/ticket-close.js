@@ -7,7 +7,7 @@ module.exports = {
     description: "",
     usage: "",
     category: "Ticket",
-    aliases: [""],
+    aliases: ["ticket close", 'close'],
     run: async (client, message, args, config) => {
         if (!message.channel.name.includes("-ticket")) return message.channel.send('This is Not a Ticket Please use this command in a ticket');
             const embed = new Discord.MessageEmbed()
