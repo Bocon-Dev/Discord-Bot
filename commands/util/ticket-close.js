@@ -28,7 +28,9 @@ module.exports = {
                 r = collected.first()
 
                 if (r.emoji.name === '✅') {
+                    message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
                     message.channel.delete()
+                }, 5000))
                 } else {
                     message.channel.send('Canceled')
                 }
