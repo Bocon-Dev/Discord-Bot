@@ -219,7 +219,7 @@ client.on("messageReactionAdd", (reaction, user) => {
         reaction.message.guild.channels.create(`${user.tag}-ticket`, {
             parent: category,
         }).then(c => {
-            c.send(`<@!${message.author.id}> Ayo Come check your ticket fool`)
+            c.send(`<@!${user.tag}> Ayo Come check your ticket fool`)
             reaction.message.reply(`Please check <#${c.id}> for your ticket`)
         })
       } catch(err) {
