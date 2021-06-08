@@ -2,8 +2,8 @@ module.exports = {
     type: 'messageReactionAdd',
     run: async (reaction, user) => {
         if(user.bot) return
-        logs.log("first check");
+        logs.send("first check");
   if (reaction.emoji.name === "✅") {
-    logs.log("second check");
+    logs.send("second check");
   }
     }}
