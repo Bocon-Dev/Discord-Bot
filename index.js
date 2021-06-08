@@ -219,8 +219,8 @@ client.on("messageReactionAdd", (reaction, user) => {
         reaction.message.guild.channels.create(`${user.tag}-ticket`, {
             parent: category,
         }).then(c => {
-            c.send(`<@!${user.tag}> Ayo Come check your ticket fool`)
-            reaction.message.reply(`Please check <#${c.id}> for your ticket`)
+            c.send(`<@!${user.id}> Ayo Come check your ticket fool`)
+            reaction.message.channel.send(`<@${user.id}>, Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
       } catch(err) {
         console.log(`There is a error\n\n${err.stack}`);
