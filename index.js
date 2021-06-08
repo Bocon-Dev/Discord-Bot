@@ -47,19 +47,19 @@ event_handler.performEvents(client);
 client.login(process.env.token)
 global.logs = new Discord.WebhookClient(config.logsID, config.logsToken)
 client.on("channelCreate", function(channel){
-    if (message.channel.name.includes("-ticket")) return
+    if (channel.name.includes("-ticket")) return
     const embed = new Discord.MessageEmbed()
     logs.send(`channelCreate: ${channel.name}`);
 });
 
 client.on("channelDelete", function(channel){
-    if (message.channel.name.includes("-ticket")) return
+    if (channel.name.includes("-ticket")) return
     const embed = new Discord.MessageEmbed()
     logs.send(`channelDelete: ${channel.name}`);
 });
 
 client.on("channelUpdate", function(oldChannel, newChannel){
-    if (message.channel.name.includes("-ticket")) return
+    if (oldChannel.name.includes("-ticket")) return
     if(oldChannel.id == '850524440738398300') return
     if(oldChannel.topic != newChannel.topic){
         const oldtopic = oldChannel.topic;
