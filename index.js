@@ -45,7 +45,7 @@ for (const file of commandFiles) {
 event_handler.performEvents(client);
 
 client.login(process.env.token)
-const logs = new Discord.WebhookClient(config.logsID, config.logsToken)
+global.logs = new Discord.WebhookClient(config.logsID, config.logsToken)
 client.on("channelCreate", function(channel){
     const embed = new Discord.MessageEmbed()
     logs.send(`channelCreate: ${channel}`);
