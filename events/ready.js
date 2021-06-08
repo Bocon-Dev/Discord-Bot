@@ -5,7 +5,7 @@ const exec = require('child_process').exec;
 module.exports = {
     type: 'ready',
     async run(client) {
-        client.channels.cache.get('850026128353132594').messages.fetch('851708205482770443')
+        client.channels.cache.get('850026128353132594').messages.fetch('851710476399804417')
         console.log(`ready.js has been loaded`);
         let statuses = [
             `Users Talk`,
