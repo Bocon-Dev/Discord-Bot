@@ -228,7 +228,8 @@ client.on("messageReactionAdd", (reaction, user) => {
             reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
     }
-    if(reaction.emoji.name == "🌎" && reaction.message.id == '851713926903103499')
+    if(reaction.emoji.name == "🌎" && reaction.message.id == '851713926903103499') {
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-ptsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
         return reaction.message.guild.channels.create(`${user.tag}-ptsup-ticket`, {
             parent: category,
         }).then(c => {
@@ -236,7 +237,9 @@ client.on("messageReactionAdd", (reaction, user) => {
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Pterodactyl support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
-    if(reaction.emoji.name == "🛒" && reaction.message.id == '851713926903103499')
+    }
+    if(reaction.emoji.name == "🛒" && reaction.message.id == '851713926903103499') {
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-otsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
         return reaction.message.guild.channels.create(`${user.tag}-otsup-ticket`, {
             parent: category,
         }).then(c => {
@@ -244,4 +247,5 @@ client.on("messageReactionAdd", (reaction, user) => {
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
+    }
 });
