@@ -14,7 +14,8 @@ module.exports = {
         await em.react('❌')
 
         em.awaitReactions(r => ['📧', '❌'].includes(r.emoji.name), {
-            max: 9000000000
+            max: 9000000000,
+            time: 900000000,
         }).then(async (collected) => {
             r = collected.first()
 
