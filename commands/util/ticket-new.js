@@ -14,6 +14,7 @@ module.exports = {
     message.guild.channels.create(`${message.author.tag}-ticket`, {
         parent: category,
     }).then(c => {
+        c.send(`<@!${message.author.id}> Ayo Come check your ticket fool`)
         message.reply(`Please check <#${c.id}> for your ticket`)
     })
 
