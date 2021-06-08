@@ -17,7 +17,7 @@ module.exports = {
                 .setTimestamp()
                 .setFooter('You have 60s to react')
 
-            em = await message.channel.send('Do you really want to close #' + message.channel.name + '? If you want to close this ticket just press ✅')
+            em = await message.channel.send('Do you really want to close <#' + message.channel.id + '>? If you want to close this ticket just press ✅')
             await em.react('✅')
             await em.react('❌')
 
@@ -29,7 +29,23 @@ module.exports = {
 
                 if (r.emoji.name === '✅') {
                     message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
-                    message.channel.delete()
+                        message.channel.delete()
+                        message.channel.messages.fetch().then(async (messages) => {
+                            const fs = require('fs')
+                            const script = messages.array().reverse().map(m => `${m.author.tag}: ${m.attachments.size > 0 ? m.attachments.first().proxyURL : m.content}`).join('\n')
+                            fs.writeFile(`script.txt`, `${script}`, (err) => { 
+                                console.log(err)
+                            })
+                        const Discord = require('discord.js') 
+                            const embed = new Discord.MessageEmbed()
+                            .setColor('RED')
+                            .setTitle(`A Ticket Has Been Closed`)
+                            .setDescription(`User: <@!${message.author.id}>\n\n Ticket Name: **${message.channel.name}**`)
+                            .setFooter(message.author.id)
+                            .setTimestamp()
+                            logs.send({ embed, files: ["./script.txt"] })
+        
+                })
                 }, 5000))
                 } else {
                     message.channel.send('Canceled')
