@@ -299,10 +299,9 @@ client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
     if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
         reaction.message.channel.send('HI, You got the role ||This is just a template message You don\'t really have the role||').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
-        reaction.message.guild.members.fetch(user).then(result => {
-            result.roles.add('847600287421431828').catch(console.error);
-        }).catch(err => {
-        });
+        
+        const member = await reaction.message.guild.members.fetch(user)
+            member.roles.add('847600287421431828')
     }
 })
 
