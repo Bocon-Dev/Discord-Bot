@@ -293,3 +293,18 @@ client.on("messageReactionAdd", (reaction, user) => {
         })
     }
 });
+
+
+client.on("messageReactionAdd", (reaction, user) => {
+    if(user.bot) return
+    if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
+        reaction.message.channel.send('HI, You got the role ||This is just a template message You don\'t really have the role||')
+    }
+})
+
+client.on("messageReactionRemove", (reaction, user) => {
+    if(user.bot) return
+    if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
+        reaction.message.channel.send('Hey You removed the reaction and got the role removed ||not really||')
+    }
+})
