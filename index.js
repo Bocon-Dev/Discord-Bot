@@ -299,14 +299,14 @@ client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
         reaction.message.channel.send('HI, You got the role ||This is just a template message You don\'t really have the role||').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
-        user.member.roles.add('847600287421431828')
+        user.roles.add('847600287421431828')
     }
 })
 
 client.on("messageReactionRemove", (reaction, user) => {
     if(user.bot) return
     if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
-        user.member.roles.add('847600287421431828')
+        user.roles.add('847600287421431828')
         reaction.message.channel.send('Hey You removed the reaction and got the role removed ||not really||').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
     }
 })
