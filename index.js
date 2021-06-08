@@ -217,7 +217,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     try {
         const role = reaction.message.channel.guild.roles.cache.find(role => role.name == "support");
         reaction.message.guild.member(user).roles.add(role);
-      } catch {
-        console.log('Error : can\'t add the role');
+      } catch(err) {
+        console.log('Error : can\'t add the role' + err.stack);
       }
 });
