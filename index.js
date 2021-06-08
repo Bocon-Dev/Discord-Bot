@@ -309,7 +309,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
     if(user.bot) return
     if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
         const member = await reaction.message.guild.members.fetch(user)
-            result.roles.remove('847600288926924831')
+        member.roles.remove('847600288926924831')
         reaction.message.channel.send('Hey You removed the reaction and got the role removed').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
     }
 })
