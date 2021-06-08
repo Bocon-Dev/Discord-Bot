@@ -61,8 +61,6 @@ client.on("channelUpdate", function(oldChannel, newChannel){
     if(oldChannel.topic != newChannel.topic){
         const oldtopic = oldChannel.topic;
         const newtopic = newChannel.topic;
-       // if(newtopic == null) return logs.send('The Newtopic is null')
-        //if(oldtopic == null) return logs.send('The Old topic is was null')
         const topicchange = new Discord.MessageEmbed()
         .setTitle('A Channels topic has been changed')
         .addField('Old Channels topic', `${oldtopic || 'null'}`, true)
@@ -214,9 +212,16 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
 
 client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
+    let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
+    if (!category) return reaction.message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
     if(reaction.emoji.name == "👍") 
     try {
-        reaction.message.channel.send('hi' + ' ' + user.tag)
+        reaction.message.guild.channels.create(`${user.tag}-ticket`, {
+            parent: category,
+        }).then(c => {
+            c.send(`<@!${message.author.id}> Ayo Come check your ticket fool`)
+            reaction.message.reply(`Please check <#${c.id}> for your ticket`)
+        })
       } catch(err) {
         console.log(`There is a error\n\n${err.stack}`);
       }
