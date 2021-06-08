@@ -297,19 +297,22 @@ client.on("messageReactionAdd", (reaction, user) => {
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
-    const rmsg = reaction.message;
-    const member = await reaction.message.guild.fetchMember(user);
     if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
         reaction.message.channel.send('HI, You got the role ||This is just a template message You don\'t really have the role||').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
-        member.roles.add('847600287421431828')
+        reaction.message.guild.members.fetch(user).then(result => {
+            result.roles.add('847600287421431828').catch(console.error);
+        }).catch(err => {
+        });
     }
 })
 
 client.on("messageReactionRemove", async (reaction, user) => {
     if(user.bot) return
-    const member = await reaction.message.guild.fetchMember(user);
     if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
-        member.roles.remove('847600287421431828')
+        reaction.message.guild.members.fetch(user).then(result => {
+            result.roles.remove('847600287421431828').catch(console.error);
+        }).catch(err => {
+        });
         reaction.message.channel.send('Hey You removed the reaction and got the role removed ||not really||').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
     }
 })
