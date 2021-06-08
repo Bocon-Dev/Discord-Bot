@@ -217,7 +217,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
     if (!category) return reaction.message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
-    if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.tag}-`)){
+    if (reaction.message.guild.channels.cache.find(channel => channel.name.includes(`${user.tag}-`))){
         reaction.users.remove(user)
         return reaction.message.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
     }
