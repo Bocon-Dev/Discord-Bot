@@ -184,6 +184,7 @@ client.on("roleUpdate", function(oldRole, newRole){
 
 client.on("guildMemberUpdate", (oldMember, newMember) => {
     const addedRoles = newMember.roles.cache.filter(r => !oldMember.roles.cache.has(r.id));
+    if(addRoles == '847600288926924831') return logs.send('test')
     const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
     const added = addedRoles.map(r => r).join(", "); 
     const removed = removedRoles.map(r => r).join(", "); 
