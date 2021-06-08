@@ -226,7 +226,13 @@ client.on("messageReactionAdd", (reaction, user) => {
         return reaction.message.guild.channels.create(`${user.tag}-dcsup-ticket`, {
             parent: category,
         }).then(c => {
-            c.send(`You Chose Discord Support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
+            const embed = new Discord.MessageEmbed()
+        .setTitle('Thank you for contacting support!')
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with ✅ meaning you need support releated to Discord support`)
+        .setTimestamp()
+        .setFooter(`${user.id}`)
+        .setColor('GREEN')
+        c.send(`${user}, This Is your ticket`, embed)
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
@@ -239,7 +245,13 @@ client.on("messageReactionAdd", (reaction, user) => {
         return reaction.message.guild.channels.create(`${user.tag}-ptsup-ticket`, {
             parent: category,
         }).then(c => {
-            c.send(`You Chose Pterodactyl support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
+            const embed = new Discord.MessageEmbed()
+        .setTitle('Thank you for contacting support!')
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🌎 meaning you need support releated to Pterodactyl support`)
+        .setTimestamp()
+        .setFooter(`${user.id}`)
+        .setColor('GREEN')
+        c.send(`${user}, This Is your ticket`, embed)
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Pterodactyl support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
@@ -251,7 +263,14 @@ client.on("messageReactionAdd", (reaction, user) => {
         return reaction.message.guild.channels.create(`${user.tag}-otsup-ticket`, {
             parent: category,
         }).then(c => {
-            c.send(`You Chose Other Support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
+            const embed = new Discord.MessageEmbed()
+        .setTitle('Thank you for contacting support!')
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🛒 meaning you need support releated to Other Support`)
+        .setTimestamp()
+        .setFooter(`${user.id}`)
+        .setColor('GREEN')
+        c.send(`${user}, This Is your ticket`, embed)
+
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
