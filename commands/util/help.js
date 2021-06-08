@@ -14,5 +14,8 @@ module.exports = {
         .addField('Utility Commands', 'Help - Get list of commands\nping - get the ping')
         .addField('Ticket Commands', 'ticket-close - close a ticket\nticket-new - make a new ticket\nticket-setup - setup a reaction system\nticket-upgrade - upgrade a ticket to a higher up')
         .addField('Owner Commands', 'eval - eval code\nclear - clear messages')
+        .setTimestamp()
+        .setFooter(message.author.tag)
+        .setColor('DARKBLUE')
         message.reply(embed)
     }}
