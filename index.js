@@ -222,7 +222,7 @@ client.on("messageReactionAdd", (reaction, user) => {
             parent: category,
         }).then(c => {
             c.send(`You Chose Discord Support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
-            reaction.remove(user);
+            reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
     if(reaction.emoji.name == "🌎" && reaction.message.id == '851710476399804417')
@@ -230,7 +230,7 @@ client.on("messageReactionAdd", (reaction, user) => {
             parent: category,
         }).then(c => {
             c.send(`You Chose Pterodactyl support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
-            reaction.remove(user);
+            reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Pterodactyl support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
     if(reaction.emoji.name == "🛒" && reaction.message.id == '851710476399804417')
@@ -238,7 +238,7 @@ client.on("messageReactionAdd", (reaction, user) => {
             parent: category,
         }).then(c => {
             c.send(`You Chose Other Support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
-            reaction.remove(user);
+            reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
 });
