@@ -7,6 +7,6 @@ module.exports = {
   let message = reaction.message;
   if(!message) return;
   if(user.bot) return;
-  if(!message.id == '851661776037740556') return logs.send('Wrong Message')
+  //if(!reaction.message.id == '851661776037740556') return logs.send('Wrong Message')
   message.channel.send('Right Message ID')
     }}
