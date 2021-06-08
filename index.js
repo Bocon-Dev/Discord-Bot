@@ -226,7 +226,7 @@ client.on("messageReactionAdd", (reaction, user) => {
             parent: category,
         }).then(c => {
             c.send(`You Chose Pterodactyl support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
-            reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+            reaction.message.channel.send(`<@${user.id}>, You chose Pterodactyl support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
     if(reaction.emoji.name == "🤔" && reaction.message.id == '851708205482770443')
         return reaction.message.guild.channels.create(`${user.tag}-otsup-ticket`, {
