@@ -216,7 +216,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     if(reaction.emoji.name == "👍") 
     try {
         const role = reaction.message.channel.guild.roles.cache.find(role => role.name == "support");
-        reaction.message.guild.member(user).roles.add(role);
+        reaction.message.channel.send('hi')
       } catch(err) {
         console.log('Error : can\'t add the role' + err.stack);
       }
