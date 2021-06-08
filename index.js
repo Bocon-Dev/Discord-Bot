@@ -48,12 +48,12 @@ client.login(process.env.token)
 global.logs = new Discord.WebhookClient(config.logsID, config.logsToken)
 client.on("channelCreate", function(channel){
     const embed = new Discord.MessageEmbed()
-    logs.send(`channelCreate: ${channel}`);
+    logs.send(`channelCreate: ${channel.name}`);
 });
 
 client.on("channelDelete", function(channel){
     const embed = new Discord.MessageEmbed()
-    logs.send(`channelDelete: ${channel}`);
+    logs.send(`channelDelete: ${channel.name}`);
 });
 
 client.on("channelUpdate", function(oldChannel, newChannel){
@@ -121,6 +121,7 @@ client.on("guildMemberRemove", function(member){
 
 client.on("messageDelete", function(message){
     if(message.author.bot) return
+    if(message.author.id == '379781622704111626') return //Doing this only for now as it is pissing me off that It logs when I'm using the damn eval command
     const logd = new Discord.MessageEmbed()
 		.setTitle(`Message deleted By, ${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
         .addField("Channel", `<#${message.channel.id}>`)

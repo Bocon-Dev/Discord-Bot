@@ -9,5 +9,11 @@ module.exports = {
     category: "Ticket",
     aliases: [""],
     run: async (client, message, args, config) => {
-        message.channel.send('Not finished')
+        let category = message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
+    if (!category) return message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
+    message.guild.channels.create(`${message.author.tag}-ticket`, {
+        parent: category,
+    }).then(c => {
+    })
+    message.reply(`Please check <#${c.id}> for your ticket`)
     }}
