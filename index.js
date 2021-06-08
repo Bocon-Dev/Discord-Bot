@@ -214,7 +214,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
     if (!category) return reaction.message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
-    if(reaction.emoji.name == "👍" && reaction.message.id == '851686355834503218') 
+    if(reaction.emoji.name == "👍" && reaction.message.id == '851692252421160971') 
     try {
         reaction.message.guild.channels.create(`${user.tag}-ticket`, {
             parent: category,
