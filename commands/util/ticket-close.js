@@ -43,7 +43,11 @@ module.exports = {
                             .setDescription(`User: <@!${message.author.id}>\n\n Ticket Name: **${message.channel.name}**`)
                             .setFooter(message.author.id)
                             .setTimestamp()
-                            logs.send({ embed, files: ["./script.txt"] })
+                            logs.send({
+                                embeds: [embed],
+                                files: [{ attachment: './script.txt' }],
+                              });
+                            //logs.send({ embed, files: ["./script.txt"] })
         
                 })
                 }, 5000))
