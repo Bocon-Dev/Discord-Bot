@@ -6,7 +6,7 @@ module.exports = {
     type: 'ready',
     async run(client) {
         client.channels.cache.get('850026128353132594').messages.fetch('851713926903103499')
-        client.channels.cache.get('847600318123343902').messages.fetch('851879702695247892')
+        client.channels.cache.get('851203761221009440').messages.fetch('851941760469041192')
         console.log(`ready.js has been loaded`);
         let statuses = [
             `Users Talk`,

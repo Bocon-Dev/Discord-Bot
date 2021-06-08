@@ -297,7 +297,7 @@ client.on("messageReactionAdd", (reaction, user) => {
 // On Duty role
 client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
-    if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
+    if(reaction.emoji.name == "✅" && reaction.message.id == '851941760469041192') {
         reaction.message.channel.send(`${user}` + ' ' + 'Hey It seems like you are going On Duty, Now whenever a ticket gets opened you will be pinged.').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 5000))
         
         const member = await reaction.message.guild.members.fetch(user)
@@ -307,7 +307,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 client.on("messageReactionRemove", async (reaction, user) => {
     if(user.bot) return
-    if(reaction.emoji.name == "✅" && reaction.message.id == '851879702695247892') {
+    if(reaction.emoji.name == "✅" && reaction.message.id == '851941760469041192') {
         const member = await reaction.message.guild.members.fetch(user)
         member.roles.remove('847600288926924831')
         reaction.message.channel.send(`${user}` + ' ' + 'Hey, It seems like you aren\'t on Duty anymore, Have a good rest of your day').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 5000))
