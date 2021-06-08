@@ -214,15 +214,26 @@ client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
     if (!category) return reaction.message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
-    if(reaction.emoji.name == "👍" && reaction.message.id == '851692252421160971') 
-    try {
-        reaction.message.guild.channels.create(`${user.tag}-ticket`, {
+    if(reaction.emoji.name == "🍑" && reaction.message.id == '851692252421160971') {
+        reaction.message.guild.channels.create(`${user.tag}-dcsup-ticket`, {
             parent: category,
         }).then(c => {
-            c.send(`<@!${user.id}> Ayo Come check your ticket fool`)
-            reaction.message.channel.send(`<@${user.id}>, Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+            c.send(`You Chose Discord Support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
+            reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
-      } catch(err) {
-        console.log(`There is a error\n\n${err.stack}`);
-      }
+    } else if(reaction.emoji.name == "🍆" && reaction.message.id == '851692252421160971') {
+        reaction.message.guild.channels.create(`${user.tag}-ptsup-ticket`, {
+            parent: category,
+        }).then(c => {
+            c.send(`You Chose Pterodactyl support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
+            reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+        })
+    } else if(reaction.emoji.name == "🤔" && reaction.message.id == '851692252421160971') {
+        reaction.message.guild.channels.create(`${user.tag}-otsup-ticket`, {
+            parent: category,
+        }).then(c => {
+            c.send(`You Chose Other Support\nMESSAGE NOT FOUND\n<@!${user.id}>`)
+            reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+        })
+    }
 });
