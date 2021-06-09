@@ -1,7 +1,7 @@
 const {
     MessageEmbed
 } = require("discord.js");
-
+const db = require('quick.db')
 module.exports = {
     name: 'ticket-setup',
     description: "",
@@ -9,7 +9,15 @@ module.exports = {
     category: "Ticket",
     aliases: [""],
     run: async (client, message, args, config) => {
-        //return message.reply('Not finished yet, rember to import quick.db')
-        message.channel.send('Bocon Hosting support!\n\nPlease react to the emoji where you need help with.\n\n:white_check_mark: = Discord Support.\n\n:earth_americas: = Pterodactyl Support.\n\n:shopping_cart: = Other Support.')
-.then(m => m.react('✅') && m.react('🌎') && m.react('🛒'))
+        const messageID = args[0]
+        const channelID = args[1]
+        const emoji1 = args[2]
+        const emoji2 = args[3]
+        const emoji3 = args[4]
+        if(!messageID) return message.channel.send(`You didn't give a vaild messageID`)
+        if(!channelID) return message.channel.send(`You didn't give a vaild channelID`)
+        if(!emoji1) return message.channel.send(`You didn't give a vaild emoji1`)
+        if(!emoji2) return message.channel.send(`You didn't give a vaild emoji2`)
+        if(!emoji3) return message.channel.send(`You didn't give a vaild emoji3`)
+        message.channel.send(`MSG: ${messageID}\nchannelID: ${channelID}\nEMJI1: ${emoji1}\nEMJI2: ${emoji2}\nemoji3:${emoji3}`)
     }}
