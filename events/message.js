@@ -17,6 +17,12 @@ module.exports = {
             }
             if (command)
             try {
+                let blacklisted = [
+                    '852013597890052106', '852013597890052106',
+                    '852013597890052106', '852013597890052106'
+                ]
+
+                if ((blacklisted.includes(message.channel.id) && (message.member.roles.cache.find(r => r.id === '847266614491742231') == null))) return;
                 command.run(client, message, args, config);
             } catch(err){
                 console.log(err.stack)
