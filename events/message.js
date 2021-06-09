@@ -21,7 +21,7 @@ module.exports = {
                     '847600313694289950', '847600314681131072',
                     '847600315482374145', '847600316186624051'
                 ]
-                if ((blacklisted.includes(message.channel.id)) && (message.member.roles.cache.find(r => r.id === '847266614491742231') == null)) return message.channel.send('[DEBUG] Command couldn\'t be used');
+                if ((blacklisted.includes(message.channel.id)) && (message.member.roles.cache.find(r => r.id === '847600287421431828') == null)) return message.channel.send('[DEBUG] Command couldn\'t be used');
                 command.run(client, message, args, config);
             } catch(err){
                 console.log(err.stack)
