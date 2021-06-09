@@ -3,7 +3,7 @@ module.exports = {
     run: async (client, message) => {
         const prefix = '$';
         const config = require('../config/config.json')
-        if (!message.content.startsWith(prefix || '<@746580089495617536>')) return;
+        if (!message.content.startsWith(prefix)) return;
 
             if (!message.member) message.member = await message.guild.fetchMember(message);
             const args = message.content.slice(prefix.length).trim().split(/ +/g);
