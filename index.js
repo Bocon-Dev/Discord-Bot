@@ -214,6 +214,7 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     }
 })
 client.on("messageReactionAdd", async (reaction, user) => {
+    if(!reaction.message.channel.name.includes('-ticket')) return reaction.message.channel.send('[DEBUG] This is not a ticket')
     if(reaction.emoji.name == "✅") return reaction.message.channel.send(`Hi You are ${user.tag}\nYour ID is ${user.id}\nThis channel name is ${reaction.message.channel.name}`)
 })
 /*
