@@ -324,7 +324,10 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
-    if(reaction.emoji.name == "🔐" && reaction.channel.name.includes('-ticket')) {
+    if (!reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-ptsup-ticket`)) return
+    if (!reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-dcsup-ticket`)) return
+    if (!reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-otsup-ticket`)) return
+    if(reaction.emoji.name == "🔐") {
         reaction.message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
             reaction.message.channel.delete()
     }, 5000))
