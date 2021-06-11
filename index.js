@@ -213,7 +213,10 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
         return logs.send(newNick)
     }
 })
-
+client.on("messageReactionAdd", async (reaction, user) => {
+    if(reaction.emoji.name == "✅") return reaction.message.channel.send(`Hi You are ${user.tag}\nYour ID is ${user.id}\nThis channel name is ${reaction.message.channel.name}`)
+})
+/*
 client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
@@ -324,7 +327,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
-    if (!reaction.message.channel.includes('-ticket')) return
+    //if (!reaction.message.channel.name.includes('-ticket')) return
     if(reaction.emoji.name == "🔐") {
         reaction.message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
             reaction.message.channel.delete()
@@ -332,7 +335,6 @@ client.on("messageReactionAdd", async (reaction, user) => {
     }
 })
 
-/*
 client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
