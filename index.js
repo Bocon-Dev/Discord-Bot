@@ -288,7 +288,7 @@ client.on("messageReactionAdd", (reaction, user) => {
         .setFooter(`${user.id}`)
         .setColor('GREEN')
         c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
-        .then(m => m.react('🔐'))
+        //.then(m => m.react('🔐'))
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
