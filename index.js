@@ -287,6 +287,7 @@ client.on("messageReactionAdd", (reaction, user) => {
         .setFooter(`${user.id}`)
         .setColor('GREEN')
         c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
+        .then(m => m.react('🔐'))
 
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
@@ -320,3 +321,88 @@ client.on("messageReactionRemove", async (reaction, user) => {
         reaction.message.channel.send(`${user}` + ' ' + 'Hey, It seems like you aren\'t on Duty anymore, Have a good rest of your day').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 5000))
     }
 })
+
+
+
+/*
+client.on("messageReactionAdd", (reaction, user) => {
+    if(user.bot) return
+    let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
+    if (!category) return reaction.message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
+    if(reaction.emoji.name == "✅" && reaction.message.id == '851713926903103499') {
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-ptsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-dcsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-otsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+
+        return reaction.message.guild.channels.create(`${user.tag}-dcsup-ticket`, {
+            parent: category,
+        }).then(c => {
+            c.updateOverwrite(user, {
+                SEND_MESSAGES: true,
+                VIEW_CHANNEL: true,
+                READ_MESSAGE_HISTORY: true,
+                ATTACH_FILES: true,
+            });
+            const embed = new Discord.MessageEmbed()
+        .setTitle('Thank you for contacting support!')
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with ✅ meaning you need support releated to Discord support`)
+        .setTimestamp()
+        .setFooter(`${user.id}`)
+        .setColor('GREEN')
+        c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
+            reaction.users.remove(user);
+            reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+        })
+    }
+    if(reaction.emoji.name == "🌎" && reaction.message.id == '851713926903103499') {
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-ptsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-dcsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-otsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+
+        return reaction.message.guild.channels.create(`${user.tag}-ptsup-ticket`, {
+            parent: category,
+        }).then(c => {
+            c.updateOverwrite(user, {
+                SEND_MESSAGES: true,
+                VIEW_CHANNEL: true,
+                READ_MESSAGE_HISTORY: true,
+                ATTACH_FILES: true,
+            });
+            const embed = new Discord.MessageEmbed()
+        .setTitle('Thank you for contacting support!')
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🌎 meaning you need support releated to Pterodactyl support`)
+        .setTimestamp()
+        .setFooter(`${user.id}`)
+        .setColor('GREEN')
+        c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
+            reaction.users.remove(user);
+            reaction.message.channel.send(`<@${user.id}>, You chose Pterodactyl support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+        })
+    }
+    if(reaction.emoji.name == "🛒" && reaction.message.id == '851713926903103499') {
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-ptsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-dcsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        if (reaction.message.guild.channels.cache.find(channel => channel.name === `${user.username.toLowerCase()}${user.discriminator}-otsup-ticket`)) return reaction.message.channel.send('You already have a ticket open').then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000)) && reaction.users.remove(user)
+        return reaction.message.guild.channels.create(`${user.tag}-otsup-ticket`, {
+            parent: category,
+        }).then(c => {
+            c.updateOverwrite(user, {
+                SEND_MESSAGES: true,
+                VIEW_CHANNEL: true,
+                READ_MESSAGE_HISTORY: true,
+                ATTACH_FILES: true,
+            });
+            const embed = new Discord.MessageEmbed()
+        .setTitle('Thank you for contacting support!')
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🛒 meaning you need support releated to Other Support`)
+        .setTimestamp()
+        .setFooter(`${user.id}`)
+        .setColor('GREEN')
+        c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
+
+            reaction.users.remove(user);
+            reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
+        })
+    }
+});
+*/
