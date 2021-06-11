@@ -45,6 +45,7 @@ for (const file of commandFiles) {
 event_handler.performEvents(client);
 
 client.login(process.env.token)
+require('newrelic');
 global.logs = new Discord.WebhookClient(config.logsID, config.logsToken)
 client.on("channelCreate", function(channel){
     if (channel.name.includes("-ticket")) return
