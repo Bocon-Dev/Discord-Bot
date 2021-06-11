@@ -213,11 +213,7 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
         return logs.send(newNick)
     }
 })
-client.on("messageReactionAdd", async (reaction, user) => {
-    if(!reaction.message.channel.name.includes('-ticket')) return reaction.message.channel.send('[DEBUG] This is not a ticket')
-    if(reaction.emoji.name == "✅") return reaction.message.channel.send(`Hi You are ${user.tag}\nYour ID is ${user.id}\nThis channel name is ${reaction.message.channel.name}`)
-})
-/*
+
 client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
@@ -238,11 +234,12 @@ client.on("messageReactionAdd", (reaction, user) => {
             });
             const embed = new Discord.MessageEmbed()
         .setTitle('Thank you for contacting support!')
-        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with ✅ meaning you need support releated to Discord support`)
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with ✅ meaning you need support releated to Discord support\n\nPress 🔐 To close the ticket`)
         .setTimestamp()
         .setFooter(`${user.id}`)
         .setColor('GREEN')
         c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
+        .then(m => m.react('🔐'))
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Discord Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
@@ -263,11 +260,12 @@ client.on("messageReactionAdd", (reaction, user) => {
             });
             const embed = new Discord.MessageEmbed()
         .setTitle('Thank you for contacting support!')
-        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🌎 meaning you need support releated to Pterodactyl support`)
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🌎 meaning you need support releated to Pterodactyl support\n\nPress 🔐 To close the ticket`)
         .setTimestamp()
         .setFooter(`${user.id}`)
         .setColor('GREEN')
         c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
+        .then(m => m.react('🔐'))
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Pterodactyl support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
@@ -287,12 +285,12 @@ client.on("messageReactionAdd", (reaction, user) => {
             });
             const embed = new Discord.MessageEmbed()
         .setTitle('Thank you for contacting support!')
-        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🛒 meaning you need support releated to Other Support`)
+        .setDescription(`Hello, ${user} and thanks for contacting support!\n\nYou reacted with 🛒 meaning you need support releated to Other Support\n\nPress 🔐 To close the ticket`)
         .setTimestamp()
         .setFooter(`${user.id}`)
         .setColor('GREEN')
         c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
-        //.then(m => m.react('🔐'))
+        .then(m => m.react('🔐'))
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
@@ -328,14 +326,14 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
-    //if (!reaction.message.channel.name.includes('-ticket')) return
+    if(!reaction.message.channel.name.includes('-ticket')) return
     if(reaction.emoji.name == "🔐") {
         reaction.message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
             reaction.message.channel.delete()
     }, 5000))
     }
 })
-
+/*
 client.on("messageReactionAdd", (reaction, user) => {
     if(user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
