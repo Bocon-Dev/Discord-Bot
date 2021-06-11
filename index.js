@@ -289,10 +289,6 @@ client.on("messageReactionAdd", (reaction, user) => {
         .setColor('GREEN')
         c.send(`${user}, This Is your ticket\n\n<@&847600288926924831> New ticket!`, embed)
         .then(m => m.react('🔐'))
-        .then(m => client.on("messageReactionAdd", async (reaction, user) => {
-            if(reaction.emoji.name == "🔐" && reaction.message.id == m.id) {
-                reaction.message.channel.send('test')
-            }}))
             reaction.users.remove(user);
             reaction.message.channel.send(`<@${user.id}>, You chose Other Support Please check <#${c.id}> for your ticket`).then(m => client.setTimeout(() => { if(!m.deleted) m.delete() }, 10000))
         })
@@ -326,7 +322,14 @@ client.on("messageReactionRemove", async (reaction, user) => {
     }
 })
 
-
+client.on("messageReactionAdd", async (reaction, user) => {
+    if(user.bot) return
+    if(reaction.emoji.name == "🔐" && reaction.channel.name.includes('-ticket')) {
+        reaction.message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
+            reaction.message.channel.delete()
+    }, 5000))
+    }
+})
 
 /*
 client.on("messageReactionAdd", (reaction, user) => {
