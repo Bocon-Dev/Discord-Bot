@@ -12,7 +12,6 @@ module.exports = {
             `Users Talk`,
             `People get Banned`,
             `Bocon Host grow`,
-            `He wasn\'t seen again`,
 	        `Discord\'s API`,
             `My Prefix Is $`
 	]
