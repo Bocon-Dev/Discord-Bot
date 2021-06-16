@@ -15,6 +15,7 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 const db = require('quick.db')
 global.nodeStatus = new db.table("nodeStatus");
+require('./botchecker')
 //Command Handler
 function getDirectories() {
     return fs.readdirSync("./commands").filter(function subFolders(file) {

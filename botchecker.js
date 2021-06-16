@@ -4,8 +4,6 @@ let stats = {
     }
 }
 const axios = require('axios');
-const chalk = require('chalk')
-console.log(chalk.magenta('[Nodes Checker] ') + chalk.green("Enabled and Online"));
 setInterval(() => {
     
     //Public nodes
