@@ -11,7 +11,7 @@ module.exports = {
             const channel = client.channels.cache.get('847600308661518336')
         let node1 = nodeStatus.get('node1'.toLowerCase()).status
         if(node1 === true) node1 = `<:green:850793782965567508> Running`
-        if(node1 === false) node1 = `<:yellow:854610262983049216> Server Down`
+        if(node1 === false) node1 = `<:yellow:854610262983049216> Wings Down`
         if(node1 === null) node1 = `<:red:849844404235927613> Node Offline`
         let messages = await channel.messages.fetch({
             limit: 10

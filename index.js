@@ -330,8 +330,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
     if(user.bot) return
     if(!reaction.message.channel.name.includes('-ticket')) return
     if(reaction.emoji.name == "🔐") {
-        reaction.message.channel.send("**Closing ticket.**", null).then(setTimeout(() => {
-            reaction.message.channel.delete()
+        reaction.message.channel.send("DISABLED AS OF NOW Use =ticket-close", null).then(setTimeout(() => {
+            //reaction.message.channel.delete()
     }, 5000))
     }
 })

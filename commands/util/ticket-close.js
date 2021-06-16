@@ -37,13 +37,14 @@ module.exports = {
                                 console.log(err)
                             })
                         const Discord = require('discord.js') 
+                        const channel = client.channels.cache.get('850558313607069726')
                             const embed = new Discord.MessageEmbed()
                             .setColor('RED')
                             .setTitle(`A Ticket Has Been Closed`)
                             .setDescription(`User: <@!${message.author.id}>\n\n Ticket Name: **${message.channel.name}**`)
                             .setFooter(message.author.id)
                             .setTimestamp()
-                            logs.send({
+                            channel.send({
                                 embeds: [embed],
                                 files: [{ attachment: './script.txt' }],
                               });
