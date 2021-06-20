@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 .node_repl_history
 .npm
 .env
@@ -9,3 +9,7 @@ json.sqlite
 .gitconfig
 .git
 config.json
+deleted.txt
+script.txt
+newrelic.js 
+newrelic_agent.log
