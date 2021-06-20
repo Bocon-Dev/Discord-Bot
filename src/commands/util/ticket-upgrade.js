@@ -1,6 +1,3 @@
-const {
-    MessageEmbed
-} = require("discord.js");
 
 module.exports = {
     name: 'ticket-upgrade',
@@ -19,4 +16,5 @@ module.exports = {
             ATTACH_FILES: false,
         });
         return message.channel.send('**Ticket Upgraded**')
-    }}
+    }
+}

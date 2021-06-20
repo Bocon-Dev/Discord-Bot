@@ -1,9 +1,5 @@
-const {
-    MessageEmbed
-} = require('discord.js');
-const {
-    inspect
-} = require('util');
+const { MessageEmbed } = require('discord.js');
+const { inspect } = require('util');
 const config = require('../../config/config.json');
 const fs = require('fs')
 
@@ -16,34 +12,34 @@ module.exports = {
     hidden: true,
     run: async (client, message, args) => {
         const code = args.join(" ");
-        if(!code) return message.channel.send('You didn\'t use the command right')
+        if (!code) return message.channel.send('You didn\'t use the command right')
         const command = args.shift().toLowerCase();
-        if(!config.owners.includes(message.author.id)) {
-const responses = ["SyntaxError: Unexpected token F in JSON at position 48", "SyntaxError: Unexpected identifier", 'UnhandledPromiseRejectionWarning: DiscordAPIError: Missing Permissions', "TypeError: Cannot read property 'messages' of undefined", "UnhandledPromiseRejectionWarning: MongoError: bad auth : Authentication failed."]
-                const dresponses = responses[Math.floor(Math.random() * responses.length)];
-                const fakeembed = new MessageEmbed()
-            .setTitle('Eval')
-            .addField(`InPut`, `\`\`\`js\n${code}\n\`\`\``)
-            .addField(`OutPut`, `\`\`\`js\n${dresponses}\n\`\`\``)
-            .setColor('RED')
+        if (!config.owners.includes(message.author.id)) {
+            const responses = ["SyntaxError: Unexpected token F in JSON at position 48", "SyntaxError: Unexpected identifier", 'UnhandledPromiseRejectionWarning: DiscordAPIError: Missing Permissions', "TypeError: Cannot read property 'messages' of undefined", "UnhandledPromiseRejectionWarning: MongoError: bad auth : Authentication failed."]
+            const dresponses = responses[Math.floor(Math.random() * responses.length)];
+            const fakeembed = new MessageEmbed()
+                .setTitle('Eval')
+                .addField(`InPut`, `\`\`\`js\n${code}\n\`\`\``)
+                .addField(`OutPut`, `\`\`\`js\n${dresponses}\n\`\`\``)
+                .setColor('RED')
             return message.channel.send(fakeembed)
-}
+        }
         try {
             let evaled = eval(code)
             if (evaled === client.token) return message.channel.send('WARNING: This is leaking the token you don\'t want the token leaked Doing so might give hackers access to your bots account and you don\'t want that do you?')
             if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
             const embed = new MessageEmbed()
-            .setTitle('Eval')
-            .addField(`InPut`, `\`\`\`js\n${code}\n\`\`\``)
-            .addField(`OutPut`, `\`\`\`js\n${evaled}\n\`\`\``)
-            .setColor('GREEN')
+                .setTitle('Eval')
+                .addField(`InPut`, `\`\`\`js\n${code}\n\`\`\``)
+                .addField(`OutPut`, `\`\`\`js\n${evaled}\n\`\`\``)
+                .setColor('GREEN')
             return message.channel.send(embed)
         } catch (err) {
             const erroembed = new MessageEmbed()
-            .setTitle('Eval')
-            .addField(`InPut`, `\`\`\`js\n${code}\n\`\`\``)
-            .addField(`OutPut`, `\`\`\`js\n${err.stack}\n\`\`\``)
-            .setColor('RED')
+                .setTitle('Eval')
+                .addField(`InPut`, `\`\`\`js\n${code}\n\`\`\``)
+                .addField(`OutPut`, `\`\`\`js\n${err.stack}\n\`\`\``)
+                .setColor('RED')
             return message.channel.send(erroembed)
         }
     }

@@ -5,7 +5,7 @@ let stats = {
 }
 const axios = require('axios');
 setInterval(() => {
-    
+
     //Public nodes
     for (let [node, data] of Object.entries(stats)) {
         setTimeout(() => {
@@ -21,13 +21,13 @@ setInterval(() => {
                 }
             }).then(response => {
                 let statusss = response.data.attributes.current_state
-                if(statusss == 'running'){
-               return nodeStatus.set(node, {
-                    timestamp: Date.now(),
-                    status: true,
-                    is_vm_online: true
-                })
-                } else if(statusss == 'offline') {
+                if (statusss == 'running') {
+                    return nodeStatus.set(node, {
+                        timestamp: Date.now(),
+                        status: true,
+                        is_vm_online: true
+                    })
+                } else if (statusss == 'offline') {
                     return nodeStatus.set(node, {
                         timestamp: Date.now(),
                         status: false,
@@ -39,6 +39,6 @@ setInterval(() => {
                 status: null,
                 is_vm_online: false
             }));
-                }, 800)
-            }
-        }, 10000)
+        }, 800)
+    }
+}, 10000)

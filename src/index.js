@@ -20,7 +20,7 @@ require('./botchecker')
 const event_handler = require('./event');
 require('newrelic');
 global.logs = new Discord.WebhookClient(config.logsID, config.logsToken) // This is where all the logs go
-
+const chalk = require('chalk')
 
 //Command Handler
 function getDirectories() {
@@ -47,11 +47,19 @@ for (const file of commandFiles) {
         command = require(`./commands/${file}`);
     }
     client.commands.set(command.name, command);
-    console.log(`Command Loaded: ${command.name}`)
+    console.log(chalk.yellow(`[COMMAND] `) + chalk.green('Command Loaded: ' + command.name))
 }
 
 event_handler.performEvents(client); //Event Handler
+const eventsfolder = './events/';
 
+fs.readdir(eventsfolder, (err, files) => {
+    files.forEach(file => {
+        const events = file
+            .replace('.js', " ")
+        console.log(chalk.magenta('[EVENTS] ') + chalk.green(events));
+    });
+});
 client.login(process.env.token)
 client.on("channelCreate", function(channel) {
     if (channel.name.includes("-ticket")) return

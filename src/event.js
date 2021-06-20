@@ -11,8 +11,7 @@ module.exports = {
 
             try {
                 client.on(event.type, (args) => {
-                    event.run(client, args);
-
+                    event.run(client, args)
                 });
             } catch (err) {
                 console.error(err);
