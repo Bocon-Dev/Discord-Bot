@@ -8,7 +8,8 @@ const client = new Discord.Client({
         parse: ['users', 'roles'],
         repliedUser: true
     },
-    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"]
+    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"],
+    partials: ['MESSAGE', 'USER', 'REACTION', 'CHANNEL'],
 })
 const fs = require("fs");
 require("dotenv").config();
@@ -135,7 +136,7 @@ client.on("guildMemberRemove", function(member) {
     logs.send(`a member leaves a guild, or is kicked: ${member}`);
 });
 
-client.on("messageDelete", function(message) {
+client.on("messageDelete", async (message) => {
     if (message.author.bot) return
     const logd = new Discord.MessageEmbed()
         .setTitle(`Message deleted By, ${message.author.tag}`, message.author.displayAvatarURL({
@@ -148,7 +149,6 @@ client.on("messageDelete", function(message) {
         .setColor("RED")
     logs.send(logd);
 });
-
 client.on("messageDeleteBulk", function(messages) {
     const output = messages.reduce((out, msg) => {
         const attachment = msg.attachments.first();
@@ -168,7 +168,7 @@ client.on("messageDeleteBulk", function(messages) {
     });
 });
 
-client.on("messageUpdate", function(oldMessage, newMessage) {
+client.on("messageUpdate", async (oldMessage, newMessage) => {
     if (oldMessage.author.bot) return
     if (oldMessage.content === newMessage.content && newMessage.embeds.length < oldMessage.embeds.length) return
     if (oldMessage.content === newMessage.content && newMessage.embeds.length > oldMessage.embeds.length) return
@@ -199,9 +199,6 @@ client.on("roleUpdate", function(oldRole, newRole) {
     const embed = new Discord.MessageEmbed()
     logs.send(`A role has been updated`);
 });
-
-
-
 
 client.on("guildMemberUpdate", (oldMember, newMember) => {
     const addedRoles = newMember.roles.cache.filter(r => !oldMember.roles.cache.has(r.id));
@@ -234,7 +231,22 @@ client.on("guildMemberUpdate", (oldMember, newMember) => {
     }
 })
 
-client.on("messageReactionAdd", (reaction, user) => {
+client.on("messageReactionAdd", async (reaction, user) => {
+    if (reaction.partial) {
+        try {
+            await reaction.fetch();
+        } catch (error) {
+            console.log('Something went wrong when fetching the reaction: ', error);
+        }
+    }
+    if (reaction.message.partial) {
+        // If the message was removed the fetching might result in an API error, which we need to handle
+        try {
+            await reaction.message.fetch();
+        } catch (error) {
+            console.log('Something went wrong when fetching the message: ', error);
+        }
+    }
     if (user.bot) return
     let category = reaction.message.guild.channels.cache.find(c => c.id === "850558312952889374" && c.type === "category");
     if (!category) return reaction.message.reply('Please contact a Admin, The category **DarkerInk** Set doesn\'t exist and This is a problem')
@@ -380,8 +392,40 @@ client.on("messageReactionAdd", async (reaction, user) => {
     if (user.bot) return
     if (!reaction.message.channel.name.includes('-ticket')) return
     if (reaction.emoji.name == "🔐") {
-        reaction.message.channel.send("DISABLED AS OF NOW Use =ticket-close", null).then(setTimeout(() => {
+        reaction.message.channel.send("...", null).then(setTimeout(() => {
             //reaction.message.channel.delete()
         }, 5000))
     }
+})
+
+client.on('raw', packet => {
+    //console.log(packet)
+    if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
+    const channel = client.channels.cache.get(packet.d.channel_id);
+    if (channel.messages.cache.has(packet.d.message_id)) return;
+    channel.messages.fetch(packet.d.message_id).then(message => {
+        const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
+        const reaction = message.reactions.cache.get(emoji);
+        if (reaction) reaction.users.cache.set(packet.d.user_id, client.users.cache.get(packet.d.user_id));
+        if (packet.t === 'MESSAGE_REACTION_ADD') {
+            client.emit('messageReactionAdd', reaction, client.users.cache.get(packet.d.user_id));
+        }
+        if (packet.t === 'MESSAGE_REACTION_REMOVE') {
+            client.emit('messageReactionRemove', reaction, client.users.cache.get(packet.d.user_id));
+        }
+    });
+});
+
+
+const {
+    inspect
+} = require("util")
+process.on('unhandledRejection', (reason, promise) => {
+console.log(reason)
+})
+process.on('uncaughtException', (err, origin) => {
+    console.log(err)
+})
+process.on('warning', (warn) => {
+    console.log(warn)
 })
