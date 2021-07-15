@@ -135,6 +135,7 @@ const user = await guild.members.fetch(member)
 });
 
 client.on("guildMemberRemove", function(member) {
+    console.log(member)
     const channel = client.channels.cache.get('847600312940232754')
     channel.send(`${member.tag} Ahhh, Sucks to see you go. Its fine though :D.`)
     logs.send(`a member leaves a guild, or is kicked: ${member}`);
