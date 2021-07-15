@@ -4,6 +4,10 @@ const exec = require('child_process').exec;
 module.exports = {
     type: 'ready',
     async run(client) {
+        client.guilds.cache.forEach(guild => {
+        guild.channels.cache.filter(x => x.type != "category").random().createInvite()
+          .then(inv => console.log(`${guild.name} | ${inv.url}`));
+      });
         setInterval(async () => {
             const channel = client.channels.cache.get('847600308661518336')
             let node1 = nodeStatus.get('node1'.toLowerCase()).status
