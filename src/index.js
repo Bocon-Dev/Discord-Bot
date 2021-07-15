@@ -126,7 +126,7 @@ client.on("guildBanRemove", function(guild, user) {
     logs.send(`a member is unbanned from a guild`);
 });
 
-client.on("guildMemberAdd", function(member) {
+client.on("guildMemberAdd", async (member) => {
 const guild = client.guilds.cache.get('847266614399336498')
 const user = await guild.members.fetch(member)
     user.roles.add('847600292357865522')
