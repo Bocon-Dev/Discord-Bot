@@ -130,10 +130,13 @@ client.on("guildMemberAdd", async (member) => {
 const guild = client.guilds.cache.get('847266614399336498')
 const user = await guild.members.fetch(member)
     user.roles.add('847600292357865522')
+    const channel = client.channels.cache.get('847600312940232754')
+    channel.send(`Welcome ${member} to Bocon Hosting!`)
 });
 
 client.on("guildMemberRemove", function(member) {
-    const embed = new Discord.MessageEmbed()
+    const channel = client.channels.cache.get('847600312940232754')
+    channel.send(`${member.tag} Ahhh, Sucks to see you go. Its fine though :D.`)
     logs.send(`a member leaves a guild, or is kicked: ${member}`);
 });
 
