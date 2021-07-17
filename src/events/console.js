@@ -7,9 +7,6 @@ module.exports = {
         if (message.author.id.includes('851299738003308554')) return
 
         if (config.console.includes(message.channel.id)) {
-            if (!message.author.id.includes('379781622704111626')) {
-                return console.send('Due to me working on the bot on my laptop this will only work for me atm sry')
-            }
             if (message.content.startsWith('>')) return
             if (message.content.includes('du')) return console.send('```\nError: Command failed: du\n/bin/sh: 1: and: blacklisted by owner\n```')
             if (message.content.includes('npm list')) return console.send('```\nError: Command failed: npm list\n/bin/sh: 1: and: blacklisted by owner\n```')
