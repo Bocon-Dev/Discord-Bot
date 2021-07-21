@@ -4,11 +4,6 @@ const Util = require("discord.js")
 const config = require('./config/config.json')
 
 const client = new Discord.Client({
-    allowedMentions: {
-        parse: ['users', 'roles'],
-        repliedUser: true
-    },
-    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"],
     partials: ['MESSAGE', 'USER', 'REACTION', 'CHANNEL'],
 })
 const fs = require("fs");
@@ -174,7 +169,7 @@ client.on("messageDeleteBulk", function(messages) {
 });
 
 client.on("messageUpdate", async (oldMessage, newMessage) => {
-    if (oldMessage.author.bot) return
+    if (newMessage.author.bot) return
     if (oldMessage.content === newMessage.content && newMessage.embeds.length < oldMessage.embeds.length) return
     if (oldMessage.content === newMessage.content && newMessage.embeds.length > oldMessage.embeds.length) return
     const log = new Discord.MessageEmbed()

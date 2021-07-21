@@ -7,9 +7,7 @@ module.exports = {
   category: "Admin",
   aliases: ["c"],
   run: async (client, message, args, config) => {
-      if (!config.owners.includes(message.author.id)) {
-          return
-      }
+    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('You don\'t have the perms to do this command')
       const user = message.mentions.users.first()
       const amount = !!parseInt(message.content.split(' ')[2]) ? parseInt(message.content.split(' ')[2]) : parseInt(message.content.split(' ')[1])
       if (!amount) return message.channel.send("You need to give an amount");

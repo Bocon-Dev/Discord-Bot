@@ -2,7 +2,7 @@
   "name": "boconhost-log-bot",
   "version": "1.0.0",
   "description": "This is Bocon host log bot",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^3.0.0",
-    "discord.js": "github:discordjs/discord.js#master",
+    "discord.js": "latest",
     "dotenv": "^10.0.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
