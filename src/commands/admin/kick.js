@@ -13,6 +13,9 @@ module.exports = {
         r = args.slice(1).join(' ')
     }
     if(!u) return message.channel.send('Hmm, Did you mention someone? If so are they a real person in the server?')
-    message.channel.send('[FAKE MESSAGE] Kicked ' + u)
-    u.kick([r])
+    u.send(`You Have been Kicked By ${message.author.tag} For This reason:\n\n${r}`)
+    message.channel.send('Kicked ' + u)
+    setTimeout(() => {
+        u.kick([r])
+    }, 500)
 }}

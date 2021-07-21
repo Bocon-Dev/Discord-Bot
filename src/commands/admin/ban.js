@@ -14,5 +14,8 @@ module.exports = {
     }
     if(!u) return message.channel.send('Hmm, Did you mention someone? If so are they a real person in the server?')
     message.channel.send('Banned ' + u.user.tag)
-    message.guild.members.ban(u, {reason: r })
-}}
+    u.send(`You Have been banned By ${message.author.tag} For This reason:\n\n${r}`)
+    setTimeout(() => {
+        message.guild.members.ban(u, {reason: r })
+    }, 500)
+  }}

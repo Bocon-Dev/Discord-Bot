@@ -57,17 +57,6 @@ fs.readdir(eventsfolder, (err, files) => {
     });
 });
 client.login(process.env.token)
-client.on("channelCreate", function(channel) {
-    if (channel.name.includes("-ticket")) return
-    const embed = new Discord.MessageEmbed()
-    logs.send(`channelCreate: ${channel.name}`);
-});
-
-client.on("channelDelete", function(channel) {
-    if (channel.name.includes("-ticket")) return
-    const embed = new Discord.MessageEmbed()
-    logs.send(`channelDelete: ${channel.name}`);
-});
 
 client.on("channelUpdate", function(oldChannel, newChannel) {
     if (oldChannel.name.includes("-ticket")) return
@@ -130,7 +119,6 @@ const user = await guild.members.fetch(member)
 });
 
 client.on("guildMemberRemove", function(member) {
-    console.log(member)
     const channel = client.channels.cache.get('847600312940232754')
     channel.send(`${member.user.tag} Ahhh, Sucks to see you go. Its fine though :D.`)
     logs.send(`a member leaves a guild, or is kicked: ${member}`);
