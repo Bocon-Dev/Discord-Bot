@@ -14,5 +14,5 @@ module.exports = {
     }
     if(!u) return message.channel.send('Hmm, Did you mention someone? If so are they a real person in the server?')
     message.channel.send('[FAKE MESSAGE] Kicked ' + u)
-    await u.kick([r])
+    u.kick([r])
 }}
