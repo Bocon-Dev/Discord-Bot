@@ -1,3 +1,4 @@
 ## THIS BOT IS NOW ARCHIVED ##
 
-This bot may no longer work as it has now been archived.
+All credits to Darkerink for making this bot. 
+Feel free to use it!
